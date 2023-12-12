@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
+  <body>
     <h1>Suma de Números Primos</h1>
-    <button onclick="calcularSumaPrimos()">Calcular Suma de Números Primos</button>
+    <button onclick="calcularSumaPrimos()">
+      <!-- Al pulsar el botón, se ejecutará la función -->
+      Calcular Suma de Números Primos
+    </button>
     <div id="resultados"></div>
+    <script>
+      function calcularSumaPrimos() {
+        //Declaramos la función calcularSumaPrimos() que contendrá el script de la suma de numeros primos
+        var suma = 0;
+        var n = 0;
 
-  
-</body>
+        while (n < 15) {
+          //Este bucle se encarga de almacenar 15 números
+          let num = parseInt(prompt(`Introduce un nº\nnº ${n + 1}`)); //Aquí se almacena el valor introducido por el usuario y se pasa a tipo integer
+          if (isNaN(num) || num <= 0) {
+            continue; //Si el valor introducido no es un número positivo, ignora el resto del código
+          } else {
+            n++; //Si el valor introducido es correcto, añade 1 al contador de números
+          }
 
+          let primo = false; //Inicia el valor booleano que determinará si un número es primo o no en false, de manera que sea este el valor que tiene aquellos números que no llegan a entrar al bucle siquiente, es decir 1 y 0
+          for (i = 2; i <= num; i++) {
+            //Cada número introducido por el usuario será dividido por todos los números desde 2 inclusive hasta si mismo
+            if (num % i === 0 && num !== i) {
+              primo = false; //Si el número se puede dividir por cualquier otro entre 2 inclusive y él y además no es él mismo, cambiará el valor de primo a false y romperá el bucle
+              break;
+            } else {
+              primo = true; //Si no se puede dividir por ningún numero entre 2 inclusive y él, cambiará el valor de primo a true
+            }
+          }
+
+          if (primo === true) {
+            //Si el valor de primo acaba siendo true, la variable suma añade el valor de ese número a su valor inicial
+            suma += num;
+          }
+        }
+        document.getElementById(
+          //El elemento con id "resultados" (div) se editará con el siguiente texto
+          "resultados"
+        ).innerText = `La suma de los números primos ingresados es: ${suma}`;
+      }
+    </script>
+  </body>
 </html>
